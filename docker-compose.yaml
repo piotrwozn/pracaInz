@@ -1,0 +1,15 @@
+
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: s25211
+      MYSQL_DATABASE: books
+      MYSQL_USER: konewka
+      MYSQL_PASSWORD: wiaderko
+    ports:
+      - "3306:3306"
