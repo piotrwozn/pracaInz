@@ -8,7 +8,13 @@ const resources = {
             "Username": "Username:",
             "Password": "Password:",
             "Log In": "Log In",
-            "Sign Up": "Sign Up"
+            "Sign Up": "Sign Up",
+            "Username null": "Username is required.",
+            "Password null": "Password is required.",
+            "Email null": "Email is required.",
+            "Username too short": "Username must be at least 3 characters long.",
+            "Password too short": "Password must be at least 6 characters long.",
+            "Invalid email": "Email is invalid."
         }
     },
     pl: {
@@ -16,7 +22,13 @@ const resources = {
             "Username": "Nazwa użytkownika:",
             "Password": "Hasło:",
             "Log In": "Zaloguj się",
-            "Sign Up": "Zarejestruj się"
+            "Sign Up": "Zarejestruj się",
+            "Username null": "Nazwa użytkownika jest wymagana.",
+            "Password null": "Hasło jest wymagane.",
+            "Email null": "Email jest wymagany.",
+            "Username too short": "Nazwa użytkownika musi składać się z co najmniej 3 znaków.",
+            "Password too short": "Hasło musi składać się z co najmniej 6 znaków.",
+            "Invalid email": "Adres e-mail jest nieprawidłowy."
         }
     }
 };
