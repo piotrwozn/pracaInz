@@ -1,0 +1,9 @@
+.signup-page {
+    font-family: 'BlackcastleFont',sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    background: url('../../assets/images/signUpBackground.png') center/cover no-repeat;
+}

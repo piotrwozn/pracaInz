@@ -1,0 +1,127 @@
+.app-container {
+    background-image: url('../../assets/images/backgroundMainPage.png');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-message {
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.register-message {
+    position: absolute;
+    right: 12%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    display: none;
+}
+
+.app-container .login-message {
+    display: block;
+}
+
+.app-container .register-message {
+    display: block;
+}
+
+.sign-up {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.login {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.background-slide-out {
+    animation: slideOut 0.5s forwards;
+}
+
+.background-slide-in {
+    top: 0;
+    left: 0;
+    background-image: url('../../assets/images/loginBackground.png');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.5s forwards;
+}
+
+@keyframes signupSlideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes signupSlideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.background-signup-slide-out {
+    animation: signupSlideOut 0.5s forwards;
+}
+
+.background-signup-slide-in {
+    top: 0;
+    right: 0;
+    background-image: url('../../assets/images/signUpBackground.png');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    animation: signupSlideIn 0.5s forwards;
+}
+
