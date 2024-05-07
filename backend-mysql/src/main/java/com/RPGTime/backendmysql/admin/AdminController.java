@@ -24,4 +24,5 @@ public class AdminController {
     public ResponseEntity<UserDto> getUser(@PathVariable String id) {
         return new ResponseEntity<>(adminService.getUser(id),HttpStatus.OK);
     }
+
 }

@@ -47,6 +47,17 @@ public class UserService {
         return "SaveComplete";
     }
 
+    public String deleteMyProfile() {
+        Optional<User> userOptional = getOptionalUser();
+        if(userOptional.isPresent()) {
+            User user = userOptional.get();
+            userRepository.delete(user);
+        } else {
+            return "UserNotFound";
+        }
+        return "DeleteComplete";
+    }
+
     private Optional<User> getOptionalUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

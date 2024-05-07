@@ -27,4 +27,10 @@ public class UserController {
         return new ResponseEntity<>(userService.updateMyProfile(userDto), HttpStatus.OK);
     }
 
+    @DeleteMapping("/me")
+    public ResponseEntity<String> deleteMyProfile() {
+        return new ResponseEntity<>(userService.deleteMyProfile(), HttpStatus.OK);
+    }
+    
+
 }
