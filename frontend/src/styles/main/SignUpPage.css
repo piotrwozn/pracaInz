@@ -6,4 +6,9 @@
     height: 100vh;
     position: relative;
     background: url('../../assets/images/signUpBackground.png') center/cover no-repeat;
+    transition: background-image 1s ease-in-out;
+}
+
+.signup-page.changing-background {
+    background-image: url('../../assets/images/loginBackground.png');
 }

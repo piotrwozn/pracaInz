@@ -1,6 +1,6 @@
 package com.RPGTime.backendmysql.config;
 
-import com.RPGTime.backendmysql.repositories.UserRepository;
+import com.RPGTime.backendmysql.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

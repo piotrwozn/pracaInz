@@ -1,4 +1,4 @@
-package com.RPGTime.backendmysql.auth;
+package com.RPGTime.backendmysql.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-    private String username;
-    private String password;
+public class AuthenticationResponse {
+
+    private String token;
 }

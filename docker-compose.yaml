@@ -1,14 +1,84 @@
+# Add this to your /etc/hosts (linux) or C:\Windows\System32\drivers\etc\hosts:
+#  127.0.0.1 kafka
+#  127.0.0.1 schema-registry
 
-version: '3.1'
-
+version: '3.7'
 services:
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    container_name: zookeeper 
+    ports:
+      - '2181:2181'
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: 'yes'
+
+  kafka:
+    image: bitnami/kafka:latest
+    container_name: kafka 
+    environment:
+      ALLOW_PLAINTEXT_LISTENER: 'yes'
+      KAFKA_BROKER_ID: '0'
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_NUM_PARTITIONS: '12'
+      KAFKA_COMPRESSION_TYPE: 'gzip'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: '1'
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: '1'
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: '1'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:9092'
+      KAFKA_CONFLUENT_SUPPORT_METRICS_ENABLE: 'false'
+      KAFKA_JMX_PORT: '9091'
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_AUTHORIZER_CLASS_NAME: 'kafka.security.authorizer.AclAuthorizer'
+      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: 'true'
+      restart: always
+    ports:
+      - '9092:9092'
+    depends_on:
+      - zookeeper
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    container_name: schema-registry
+    depends_on:
+      - kafka
+      - zookeeper
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'PLAINTEXT://kafka:9092'
+      SCHEMA_REGISTRY_LISTENERS: 'http://0.0.0.0:8081'
+
+
+  #  http://localhost:8090/ui
+  akhq:
+    image: tchiotludo/akhq:latest
+    container_name: akhq 
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            docker-kafka-server:
+              properties:
+                bootstrap.servers: "kafka:9092"
+
+              schema-registry:
+                url: "http://schema-registry:8081"
+    ports:
+      - "8090:8080"
+    depends_on:
+      - kafka
+      - zookeeper
+    links:
+      - kafka
+      - schema-registry
 
   db:
     image: mysql:latest
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: s25211
-      MYSQL_DATABASE: books
+      MYSQL_DATABASE: RPGTime
       MYSQL_USER: konewka
       MYSQL_PASSWORD: wiaderko
     ports:

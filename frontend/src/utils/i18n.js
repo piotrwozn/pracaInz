@@ -14,7 +14,10 @@ const resources = {
             "Email null": "Email is required.",
             "Username too short": "Username must be at least 3 characters long.",
             "Password too short": "Password must be at least 6 characters long.",
-            "Invalid email": "Email is invalid."
+            "Invalid email": "Email is invalid.",
+            "UsernameTaken": "This username is already taken",
+            "EmailTaken": "This email is already taken",
+            "WrongDetails": "Wrong username or password"
         }
     },
     pl: {
@@ -28,7 +31,10 @@ const resources = {
             "Email null": "Email jest wymagany.",
             "Username too short": "Nazwa użytkownika musi składać się z co najmniej 3 znaków.",
             "Password too short": "Hasło musi składać się z co najmniej 6 znaków.",
-            "Invalid email": "Adres e-mail jest nieprawidłowy."
+            "Invalid email": "Adres e-mail jest nieprawidłowy.",
+            "UsernameTaken": "Ta nazwa użytkownika jest już zajęta",
+            "EmailTaken": "Ten email jest już zajęty",
+            "WrongDetails": "Zła nazwa użytkownika lub hasło"
         }
     }
 };

@@ -3,9 +3,10 @@ import "../../styles/main/LoginPage.css";
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import LanguageSwitcher from "../../utils/LanguageSwitcher";
+import {useNavigate} from "react-router-dom";
 
 const SignUpPage = () => {
-
+    const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     const {t} = useTranslation();
     const [userDetails, setUserDetails] = useState({
@@ -13,6 +14,7 @@ const SignUpPage = () => {
         email: '',
         password: ''
     });
+    const [isChangingBackground, setIsChangingBackground] = useState(false);
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -46,7 +48,7 @@ const SignUpPage = () => {
         e.preventDefault();
         if(validateForm()) {
             try {
-                const response = await fetch('http://localhost:8080/api/user', {
+                const response = await fetch('http://localhost:8080/api/auth/register', {
                    method: 'POST',
                    headers: {
                        'Content-Type': 'application/json',
@@ -54,7 +56,19 @@ const SignUpPage = () => {
                     body: JSON.stringify(userDetails),
                 });
 
-                const data = await response.text();
+                const data = await response.json();
+
+                if(data.token === "UsernameTaken") {
+                    errors.username = t('UsernameTaken');
+                } else if (data.token === "EmailTaken") {
+                    errors.email = t('EmailTaken');
+                } else {
+                    setIsVisible(false);
+                    setIsChangingBackground(true);
+                    setTimeout(() => {
+                        navigate('/login');
+                    }, 1000);
+                }
             } catch (error) {
                 console.error('There was an error submitting the form:', error);
             }
@@ -62,7 +76,7 @@ const SignUpPage = () => {
     }
 
     return (
-        <div className="signup-page">
+        <div className={`signup-page ${isChangingBackground ? 'changing-background' : ''}`}>
             <div className="language-switcher">
                 <LanguageSwitcher/>
             </div>
@@ -89,5 +103,4 @@ const SignUpPage = () => {
         </div>
     )
 }
-
 export default SignUpPage;

@@ -1,6 +1,6 @@
-package com.RPGTime.backendmysql.repositories;
+package com.RPGTime.backendmysql.user;
 
-import com.RPGTime.backendmysql.models.User;
+import com.RPGTime.backendmysql.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

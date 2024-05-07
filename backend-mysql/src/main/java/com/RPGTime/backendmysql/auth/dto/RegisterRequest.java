@@ -1,4 +1,4 @@
-package com.RPGTime.backendmysql.auth;
+package com.RPGTime.backendmysql.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

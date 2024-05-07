@@ -5,6 +5,7 @@ import HomePage from './main/HomePage';
 import MainPage from './main/MainPage';
 import LoginPage from './main/LoginPage';
 import SignUpPage from './main/SignUpPage';
+import WelcomePage from './user/WelcomePage';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/mainPage" element={<MainPage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/signup" element={<SignUpPage/>}/>
+                <Route path="/welcome" element={<WelcomePage/>}/>
             </Routes>
 
         </Router>

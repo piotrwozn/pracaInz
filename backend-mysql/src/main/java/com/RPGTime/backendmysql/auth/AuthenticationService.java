@@ -1,9 +1,12 @@
 package com.RPGTime.backendmysql.auth;
 
+import com.RPGTime.backendmysql.auth.dto.AuthenticationRequest;
+import com.RPGTime.backendmysql.auth.dto.AuthenticationResponse;
+import com.RPGTime.backendmysql.auth.dto.RegisterRequest;
 import com.RPGTime.backendmysql.config.JwtService;
-import com.RPGTime.backendmysql.enums.Role;
-import com.RPGTime.backendmysql.models.User;
-import com.RPGTime.backendmysql.repositories.UserRepository;
+import com.RPGTime.backendmysql.user.model.Role;
+import com.RPGTime.backendmysql.user.model.User;
+import com.RPGTime.backendmysql.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -50,4 +53,5 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+
 }

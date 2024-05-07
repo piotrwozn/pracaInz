@@ -1,6 +1,5 @@
-package com.RPGTime.backendmysql.models;
+package com.RPGTime.backendmysql.user.model;
 
-import com.RPGTime.backendmysql.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
