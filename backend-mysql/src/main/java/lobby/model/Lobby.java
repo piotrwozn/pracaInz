@@ -24,6 +24,9 @@ public class Lobby {
     private Long id;
 
     @ManyToMany
-    Set<User> users;
+    private Set<User> users;
+
+    @Column
+    private boolean isPublic;
 
 }
