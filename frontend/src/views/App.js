@@ -6,6 +6,7 @@ import MainPage from './main/MainPage';
 import LoginPage from './main/LoginPage';
 import SignUpPage from './main/SignUpPage';
 import WelcomePage from './user/WelcomePage';
+import UserDetailsPage from './user/UserDetailsPage';
 
 
 function App() {
@@ -17,8 +18,8 @@ function App() {
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/signup" element={<SignUpPage/>}/>
                 <Route path="/welcome" element={<WelcomePage/>}/>
+                <Route path="/user-details" element={<UserDetailsPage/>}/>
             </Routes>
-
         </Router>
     );
 }

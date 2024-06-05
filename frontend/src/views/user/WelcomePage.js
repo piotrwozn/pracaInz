@@ -1,10 +1,11 @@
+import React from 'react';
+import "../../styles/main/WelcomePage.css";
+import Navbar from "./Navbar";
 
 const WelcomePage = () => {
-    return(
-        <div>
-            <p>Welcome</p>
-        </div>
-    )
+    return (
+        <Navbar />
+    );
 }
 
 export default WelcomePage;

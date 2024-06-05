@@ -1,6 +1,7 @@
 package com.RPGTime.backendmysql.user.model;
 
 import jakarta.persistence.*;
+import com.RPGTime.backendmysql.lobby.model.Lobby;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -50,6 +52,9 @@ public class User implements UserDetails {
     )
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToMany
+    Set<Lobby> userLobby;
 
     public User(String username, String password, String email, Role role) {
         this.username = username;

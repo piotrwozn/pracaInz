@@ -2,11 +2,15 @@ package com.RPGTime.backendmysql.user;
 
 import com.RPGTime.backendmysql.user.dto.UserDto;
 import com.RPGTime.backendmysql.user.model.User;
+import com.RPGTime.backendmysql.lobby.LobbyRepository;
+import com.RPGTime.backendmysql.lobby.model.Lobby;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,6 +18,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private LobbyRepository lobbyRepository;
 
     public UserDto getMyProfile() {
         Optional<User> userOptional = getOptionalUser();
@@ -25,7 +30,7 @@ public class UserService {
         User user = null;
 
 
-        if(userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
             user = userOptional.get();
             if (!userDto.getUsername().isEmpty()) {
                 if (userRepository.findByUsername(userDto.getUsername()).isEmpty()) {
@@ -33,7 +38,7 @@ public class UserService {
                 } else {
                     return "UsernameTaken";
                 }
-            } else if(!userDto.getEmail().isEmpty()) {
+            } else if (!userDto.getEmail().isEmpty()) {
                 if (userRepository.findByEmail(userDto.getEmail()).isEmpty()) {
                     user.setEmail(userDto.getEmail());
                 } else {
@@ -49,13 +54,22 @@ public class UserService {
 
     public String deleteMyProfile() {
         Optional<User> userOptional = getOptionalUser();
-        if(userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
             User user = userOptional.get();
             userRepository.delete(user);
         } else {
             return "UserNotFound";
         }
         return "DeleteComplete";
+    }
+
+    public List<Lobby> getUserLobby() {
+        Optional<User> userOptional = getOptionalUser();
+        if(userOptional.isPresent()) {
+            return lobbyRepository.getLobbiesByUsersContains(userOptional.get());
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     private Optional<User> getOptionalUser() {
@@ -68,4 +82,5 @@ public class UserService {
     private UserDto convertToDto(User user) {
         return new UserDto(user.getUsername(), user.getEmail(), user.getRole().name());
     }
+
 }
