@@ -1,0 +1,80 @@
+
+.user-details-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'BlackcastleFont', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    font-size: 25px;
+}
+
+.background-image {
+    background-image: url('../../assets/images/userDetailsBackground.png'); /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.form-container {
+    position: relative;
+    margin: 0 auto;
+    padding: 40px;
+    width: 80%;
+    max-width: 500px;
+    background-image: url('../../assets/images/userDetailsForm.png'); /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent */
+    border-radius: 10px;
+    margin-top: 100px;
+    animation: fadeIn 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.user-details, .form-content {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+button {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+form button[type="submit"] {
+    margin-top: 15px;
+}

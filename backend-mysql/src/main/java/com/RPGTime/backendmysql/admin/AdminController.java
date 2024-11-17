@@ -1,6 +1,6 @@
 package com.RPGTime.backendmysql.admin;
 
-import com.RPGTime.backendmysql.user.dto.UserDto;
+import com.RPGTime.backendmysql.general.user.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

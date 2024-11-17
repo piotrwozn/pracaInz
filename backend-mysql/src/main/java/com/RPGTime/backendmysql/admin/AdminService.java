@@ -1,8 +1,8 @@
 package com.RPGTime.backendmysql.admin;
 
-import com.RPGTime.backendmysql.user.UserRepository;
-import com.RPGTime.backendmysql.user.dto.UserDto;
-import com.RPGTime.backendmysql.user.model.User;
+import com.RPGTime.backendmysql.general.user.UserRepository;
+import com.RPGTime.backendmysql.general.user.dto.UserDto;
+import com.RPGTime.backendmysql.general.user.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

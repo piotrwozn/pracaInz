@@ -2,7 +2,15 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'BlackcastleFont', sans-serif;
+}
+
+.background-image-main {
     background-image: url('../../assets/images/mainBackground.png');
     background-size: cover;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-position: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }

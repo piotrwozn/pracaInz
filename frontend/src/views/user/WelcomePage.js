@@ -4,8 +4,11 @@ import Navbar from "./Navbar";
 
 const WelcomePage = () => {
     return (
-        <Navbar />
-    );
+        <div className="background-image-main">
+            <Navbar/>
+        </div>
+)
+    ;
 }
 
 export default WelcomePage;

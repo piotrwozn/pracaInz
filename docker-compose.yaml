@@ -1,7 +1,3 @@
-# Add this to your /etc/hosts (linux) or C:\Windows\System32\drivers\etc\hosts:
-#  127.0.0.1 kafka
-#  127.0.0.1 schema-registry
-
 version: '3.7'
 services:
   zookeeper:
@@ -49,8 +45,6 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'PLAINTEXT://kafka:9092'
       SCHEMA_REGISTRY_LISTENERS: 'http://0.0.0.0:8081'
 
-
-  #  http://localhost:8090/ui
   akhq:
     image: tchiotludo/akhq:latest
     container_name: akhq 
@@ -61,7 +55,6 @@ services:
             docker-kafka-server:
               properties:
                 bootstrap.servers: "kafka:9092"
-
               schema-registry:
                 url: "http://schema-registry:8081"
     ports:
@@ -74,12 +67,11 @@ services:
       - schema-registry
 
   db:
-    image: mysql:latest
+    image: postgres:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: s25211
-      MYSQL_DATABASE: RPGTime
-      MYSQL_USER: konewka
-      MYSQL_PASSWORD: wiaderko
+      POSTGRES_DB: RPGTime
+      POSTGRES_USER: konewka
+      POSTGRES_PASSWORD: wiaderko
     ports:
-      - "3306:3306"
+      - "3306:5432"
