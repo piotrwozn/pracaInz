@@ -1,6 +1,7 @@
 package com.RPGTime.backendmysql.game.lobby.model;
 
 import com.RPGTime.backendmysql.game.user_lobby.model.UserLobby;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,9 +35,14 @@ public class Lobby {
     @Size(max = 500)
     private String description;
 
-    @OneToMany(mappedBy = "lobby", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "lobby", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<UserLobby> userLobby = new HashSet<>();
 
     @Column(name = "IS_PUBLIC", nullable = false)
     private boolean isPublic;
+
+    @Column(name = "PASSWORD")
+    @Size(max = 50)
+    private String password;
 }

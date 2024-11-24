@@ -1,0 +1,246 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'BlackcastleFont', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    font-size: 25px;
+}
+
+.public-lobbies-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Background Image */
+.background-image {
+    background-image: url('../../assets/images/publicLobbiesBackground.png'); /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Lobbies Container */
+.lobbies-container {
+    position: relative;
+    margin: 0 auto;
+    padding: 40px;
+    width: 80%;
+    max-width: 800px;
+    background-image: url('../../assets/images/publicLobbiesTable.png'); /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent */
+    border-radius: 10px;
+    margin-top: 100px;
+    animation: fadeIn 0.5s ease-in-out;
+    z-index: 1;
+}
+
+/* Header and Add Lobby Button */
+.lobbies-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-lobby-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #28a745; /* Green color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.add-lobby-button:hover {
+    background-color: #218838;
+}
+
+/* Lobby List Styles */
+.lobby-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lobby-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(210, 180, 140, 0.8); /* Jasnobrązowe, matowe, częściowo przezroczyste tło */
+    border-radius: 5px;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.lobby-item h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.lobby-item p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Join Button Styles */
+.join-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #654321; /* Ciemnobrązowy kolor */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.join-button:hover {
+    background-color: #4e3524; /* Ciemniejszy brąz przy najechaniu */
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Added z-index */
+}
+
+.modal-content {
+    background-image: url('../../assets/images/addLobbiePopUp.png'); /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    border-radius: 10px;
+    position: relative;
+    width: 500px;
+    max-width: 90%;
+    background-color: rgba(255, 255, 255, 0.95);
+    animation: fadeIn 0.3s ease-in-out;
+    z-index: 1001; /* Optional z-index */
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-buttons button[type="submit"] {
+    background-color: #28a745; /* Green color */
+    color: white;
+}
+
+.form-buttons button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.form-buttons button[type="button"] {
+    background-color: #dc3545; /* Red color */
+    color: white;
+}
+
+.form-buttons button[type="button"]:hover {
+    background-color: #c82333;
+}
+
+/* Error Message Styles */
+.error {
+    color: red;
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.description-container {
+    position: relative;
+    border: 3px solid black; /* Strong black border */
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.description-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    background-color: rgba(165, 42, 42, 0.5); /* Semi-transparent brown */
+    filter: blur(8px); /* Apply blur effect */
+    z-index: -1;
+}
+
+.description-container textarea {
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    resize: vertical;
+    border: none;
+    outline: none;
+    color: #000; /* Text color */
+}

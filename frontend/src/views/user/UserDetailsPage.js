@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
+import Navbar from '../main/Navbar';
 import '../../styles/main/UserDetailsPage.css';
 
 function UserDetailsPage() {
@@ -179,12 +179,14 @@ function UserDetailsPage() {
                 }),
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
+            if (response.ok) {
+                const errorData = await response.text();
                 if (errorData.error === 'WrongPassword') {
                     setErrors({ wrongPassword: 'Password is incorrect' });
-                } else {
-                    throw new Error('Failed to delete account');
+                } else if (errorData.error === 'UserNotFound') {
+                    setErrors({ userNotFound: 'User not found' });
+                } else if (errorData.error === 'DeletionFailed') {
+                    setErrors({ deletionFailed: 'Failed to delete account due to a server error.' });
                 }
                 return;
             }

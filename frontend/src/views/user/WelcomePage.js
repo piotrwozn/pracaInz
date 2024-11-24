@@ -1,6 +1,6 @@
 import React from 'react';
 import "../../styles/main/WelcomePage.css";
-import Navbar from "./Navbar";
+import Navbar from "../main/Navbar";
 
 const WelcomePage = () => {
     return (

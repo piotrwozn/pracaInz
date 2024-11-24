@@ -1,5 +1,6 @@
 package com.RPGTime.backendmysql.general.user;
 
+import com.RPGTime.backendmysql.general.user.dto.PasswordRequest;
 import com.RPGTime.backendmysql.general.user.dto.UserChangeDto;
 import com.RPGTime.backendmysql.general.user.dto.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,8 @@ public class UserController {
     }
 
     @DeleteMapping("/me")
-    public ResponseEntity<String> deleteMyProfile(@RequestBody String password) {
-        return new ResponseEntity<>(userService.deleteMyProfile(password), HttpStatus.OK);
+    public ResponseEntity<String> deleteMyProfile(@RequestBody PasswordRequest passwordRequest) {
+        return new ResponseEntity<>(userService.deleteMyProfile(passwordRequest.getPassword()), HttpStatus.OK);
     }
     
 

@@ -11,7 +11,6 @@ const Navbar = () => {
                 <Link to="/user-details">User Details</Link>
                 <Link to="/your-lobbies">Your Lobbies</Link>
                 <Link to="/public-lobbies">Public Lobbies</Link>
-                <Link to="/create-lobby">Create Lobby</Link>
                 <Link to="/forum">Forum</Link>
             </div>
         </div>

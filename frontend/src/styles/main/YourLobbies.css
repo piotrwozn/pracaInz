@@ -1,0 +1,98 @@
+/* YourLobbiesPage.css */
+
+/* Podstawowe style są takie same jak w PublicLobbiesPage.css */
+
+/* Lobby List Styles */
+.lobbies-container {
+    max-height: 80vh; /* Ustaw maksymalną wysokość na 80% wysokości widoku */
+    overflow-y: auto; /* Włącz pionowe przewijanie */
+    padding: 20px;
+    background-color: #f9f9f9; /* Opcjonalny kolor tła dla lepszej widoczności */
+    border-radius: 8px; /* Opcjonalne zaokrąglenie narożników */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcjonalny cień dla efektu głębi */
+}
+
+/* Stylowanie listy lobby */
+.lobby-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Opcjonalne: Dodanie stylów dla lepszej estetyki przewijanej listy */
+.lobby-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lobby-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.lobby-list::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+/* Join Button Styles */
+.join-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #654321; /* Ciemnobrązowy kolor */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.join-button:hover {
+    background-color: #4e3524; /* Ciemniejszy brąz przy najechaniu */
+}
+
+/* Możesz dodać lub zmodyfikować inne style w zależności od potrzeb */
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.description-container {
+    position: relative;
+    border: 3px solid black; /* Strong black border */
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.description-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    background-color: rgba(165, 42, 42, 0.5); /* Semi-transparent brown */
+    filter: blur(8px); /* Apply blur effect */
+    z-index: -1;
+}
+
+.description-container textarea {
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    resize: vertical;
+    border: none;
+    outline: none;
+    color: #000; /* Text color */
+}
+
+/* Dodatkowe style mogą być wspólne z PublicLobbiesPage.css */

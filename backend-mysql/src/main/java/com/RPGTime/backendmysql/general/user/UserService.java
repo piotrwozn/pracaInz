@@ -21,12 +21,16 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private LobbyRepository lobbyRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UserDto getMyProfile() {
         Optional<User> userOptional = getOptionalUser();
         return userOptional.map(this::convertToDto).orElse(null);
+    }
+
+    public User getUserProfile() {
+        Optional<User> userOptional = getOptionalUser();
+        return userOptional.orElse(null);
     }
 
     public String updateMyProfile(UserChangeDto userDto) {
