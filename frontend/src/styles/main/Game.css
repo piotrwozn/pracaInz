@@ -1,0 +1,66 @@
+/* src/styles/Game.css */
+
+.game-page {
+    background-image: url('../../assets/images/GameBackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ogólne style dla game-chat i dice-roll */
+.game-chat, .dice-roll {
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 15px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    cursor: move;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.connected-users {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    cursor: move;
+    width: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    top: 100px;
+    left: 400px; /* Możesz dostosować pozycję */
+}
+
+
+/* Style dla game-chat z tłem */
+.game-chat {
+    top: 100px;
+    left: 50px;
+    background-image: url('../../assets/images/textChatBackground.png');
+}
+
+/* Style dla dice-roll z tłem */
+.dice-roll {
+    top: 100px;
+    right: 50px;
+    background-image: url('../../assets/images/diceRollBackground.png');
+}
+
+/* Dodatkowe style dla dice-configuration */
+.dice-configuration {
+    margin-bottom: 10px;
+}
+
+.dice-configuration label {
+    margin-right: 10px;
+}
+
+.dice-configuration button {
+    margin-left: 10px;
+}

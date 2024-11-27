@@ -1,3 +1,4 @@
+// com/RPGTime/backendmysql/general/config/SecurityConfig.java
 package com.RPGTime.backendmysql.general.config;
 
 import lombok.RequiredArgsConstructor;
@@ -5,14 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.messaging.context.SecurityContextChannelInterceptor;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
-@EnableWebSecurity
 @RequiredArgsConstructor
+@Configuration
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
@@ -23,17 +22,18 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/auth/**", "/ws/**").permitAll()
                         .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
-                        .anyRequest().hasAnyAuthority("ADMIN","USER")
+                        .anyRequest().hasAnyAuthority("ADMIN", "USER")
                 )
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
+    @Bean
+    public SecurityContextChannelInterceptor securityContextChannelInterceptor() {
+        return new SecurityContextChannelInterceptor();
+    }
 }
