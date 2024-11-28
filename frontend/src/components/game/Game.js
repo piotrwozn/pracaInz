@@ -4,9 +4,9 @@ import React, { useContext, useEffect } from 'react';
 import { LobbyContext } from '../../contexts/LobbyContext';
 import { useNavigate } from 'react-router-dom';
 import GameChat from './GameChat';
-import DiceRoll from './DiceRoll'; // Importujemy nowy komponent
+import DiceRoll from './DiceRoll';
 import '../../styles/main/Game.css';
-import ConnectedUsers from "./ConnectedUsers"; // Importujemy styl dla tła
+import ConnectedUsers from "./ConnectedUsers";
 
 function Game() {
     const { currentLobby } = useContext(LobbyContext);

@@ -11,4 +11,5 @@ public interface ConnectedUserRepository extends JpaRepository<ConnectedUser, Lo
     List<ConnectedUser> findBySessionId(String sessionId);
 
     Optional<ConnectedUser> findBySessionIdAndUsername(String username, String sessionId);
+    void deleteAllByUsername(String username);
 }

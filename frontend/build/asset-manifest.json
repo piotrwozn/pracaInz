@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.38e6deb0.css",
+    "main.js": "/static/js/main.387aa4d1.js",
+    "static/js/787.9e9f4ffd.chunk.js": "/static/js/787.9e9f4ffd.chunk.js",
+    "static/media/backgroundMainPage.png": "/static/media/backgroundMainPage.0cdcfd1c0863577db23a.png",
+    "static/media/userDetailsBackground.png": "/static/media/userDetailsBackground.d533d240f68b9f7b59f4.png",
+    "static/media/signUp.png": "/static/media/signUp.b51e493f6930b1a22018.png",
+    "static/media/login.png": "/static/media/login.ec7ca3d390c60b2fe9ba.png",
+    "static/media/signUpBackground.png": "/static/media/signUpBackground.ba22243abd1debecb4d7.png",
+    "static/media/mainBackground.png": "/static/media/mainBackground.8c51acf5e5417d1ae1ad.png",
+    "static/media/publicLobbiesBackground.png": "/static/media/publicLobbiesBackground.0fcae66573610875f14d.png",
+    "static/media/GameBackground.png": "/static/media/GameBackground.a077bf425c08f04fc863.png",
+    "static/media/publicLobbiesTable.png": "/static/media/publicLobbiesTable.bef2d84d1d0a41659cd7.png",
+    "static/media/loginBackground.png": "/static/media/loginBackground.8314bf5bc65b063d9046.png",
+    "static/media/userDetailsForm.png": "/static/media/userDetailsForm.8a62f6d7872d4c537319.png",
+    "static/media/textChatBackground.png": "/static/media/textChatBackground.98acb0b78f7820df0e5f.png",
+    "static/media/addLobbiePopUp.png": "/static/media/addLobbiePopUp.1b3f2905f64dc6fe483c.png",
+    "static/media/startBackground.jpg": "/static/media/startBackground.f5d751fcb10c90d72d43.jpg",
+    "static/media/formBackground.png": "/static/media/formBackground.b25356cc609d8a97e18d.png",
+    "static/media/diceRollBackground.png": "/static/media/diceRollBackground.bb209cb26413fd4bbf3f.png",
+    "static/media/connectedUsersBackground.png": "/static/media/connectedUsersBackground.6ae3c76540b9d7129144.png",
+    "static/media/logo.png": "/static/media/logo.00f0bb64a1ce7ac618cb.png",
+    "static/media/Blackcastlemf-BG5n.ttf": "/static/media/Blackcastlemf-BG5n.b3c973aa045a1d5cb655.ttf",
+    "index.html": "/index.html",
+    "main.38e6deb0.css.map": "/static/css/main.38e6deb0.css.map",
+    "main.387aa4d1.js.map": "/static/js/main.387aa4d1.js.map",
+    "787.9e9f4ffd.chunk.js.map": "/static/js/787.9e9f4ffd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.38e6deb0.css",
+    "static/js/main.387aa4d1.js"
+  ]
+}

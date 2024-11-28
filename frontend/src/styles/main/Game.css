@@ -10,7 +10,7 @@
 }
 
 /* Ogólne style dla game-chat i dice-roll */
-.game-chat, .dice-roll {
+.game-chat, .dice-roll, .connected-users {
     position: absolute;
     background-size: cover;
     background-repeat: no-repeat;
@@ -24,17 +24,9 @@
 }
 
 .connected-users {
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 15px;
-    border: 1px solid #000;
-    border-radius: 8px;
-    cursor: move;
-    width: 200px;
-    max-height: 400px;
-    overflow-y: auto;
+    background-image: url('../../assets/images/connectedUsersBackground.png');
     top: 100px;
-    left: 400px; /* Możesz dostosować pozycję */
+    left: 400px;
 }
 
 

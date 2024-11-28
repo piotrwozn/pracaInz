@@ -1,25 +1,12 @@
-// src/components/game/ConnectedUsers.js
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Draggable from 'react-draggable';
 
 function ConnectedUsers({ sessionId }) {
     const [users, setUsers] = useState([]);
     const nodeRef = useRef(null);
 
-    useEffect(() => {
-        fetchConnectedUsers();
-
-        // Opcjonalnie: ustawienie interwału do automatycznego odświeżania
-        const intervalId = setInterval(fetchConnectedUsers, 5000); // odśwież co 5 sekund
-
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, [sessionId]);
-
-    const fetchConnectedUsers = () => {
-        fetch('/api/connected-users', {
+    const fetchConnectedUsers = useCallback(() => {
+        fetch('http://localhost:8080/api/connected-users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,8 +24,18 @@ function ConnectedUsers({ sessionId }) {
                 setUsers(data);
             })
             .catch(error => console.error('Error fetching connected users:', error));
-    };
+    }, [sessionId]);
 
+    useEffect(() => {
+        fetchConnectedUsers();
+
+        // Opcjonalnie: ustawienie interwału do automatycznego odświeżania
+        const intervalId = setInterval(fetchConnectedUsers, 5000); // odśwież co 5 sekund
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, [fetchConnectedUsers]);
 
     return (
         <Draggable
@@ -50,7 +47,7 @@ function ConnectedUsers({ sessionId }) {
                 <h2>Podłączeni użytkownicy</h2>
                 <ul>
                     {users.map((user) => (
-                        <li key={user.id.username}>{user.id.username}</li>
+                        <li key={user.username}>{user.username}</li>
                     ))}
                 </ul>
                 <button onClick={fetchConnectedUsers}>Odśwież</button>

@@ -2,6 +2,7 @@ package com.RPGTime.backendmysql.game.chat;
 
 import com.RPGTime.backendmysql.game.chat.model.ConnectedUser;
 import com.RPGTime.backendmysql.game.chat.model.ConnectedUserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -52,6 +53,7 @@ public class WebSocketEventListener {
     }
 
     @EventListener
+    @Transactional
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor accessor = StompHeaderAccessor.wrap(event.getMessage());
         String sessionId = accessor.getSessionId();
@@ -60,13 +62,11 @@ public class WebSocketEventListener {
         if (principal != null) {
             String username = principal.getName();
 
-            Optional<ConnectedUser> connectedUser = connectedUserRepository.findBySessionIdAndUsername(username,sessionId);
-
-            // Remove the ConnectedUser by composite key
-            connectedUserRepository.deleteById(connectedUser.get().getId());
-            sendSessionUserUpdate(sessionId);
+            connectedUserRepository.deleteAllByUsername(username);
 
             System.out.println("User Disconnected: Username: " + username + ", Session ID: " + sessionId);
+        } else {
+            System.out.println("Principal is null in handleWebSocketDisconnectListener");
         }
     }
 

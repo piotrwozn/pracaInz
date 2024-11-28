@@ -17,8 +17,10 @@ public class ConnectedUserController {
     private final ConnectedUserRepository connectedUserRepository;
 
 
-    @PostMapping()
-    public ResponseEntity<List<ConnectedUser>> getConnectedUsers(@RequestParam String sessionId) {
-        return new ResponseEntity<>(connectedUserRepository.findBySessionId(sessionId),HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<List<ConnectedUser>> getConnectedUsers(@RequestBody String sessionId) {
+
+        return new ResponseEntity<>(connectedUserRepository.findBySessionId(sessionId), HttpStatus.OK);
     }
+
 }
