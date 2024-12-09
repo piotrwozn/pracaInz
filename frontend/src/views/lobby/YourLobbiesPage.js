@@ -11,13 +11,16 @@ function YourLobbiesPage() {
     const [errors, setErrors] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
-    // State dla danych formularza
+    // State dla danych formularza nowego lobby
     const [formData, setFormData] = useState({
         name: '', description: '', isPublic: true, password: '',
     });
 
     // State dla błędów walidacji formularza
     const [formErrors, setFormErrors] = useState({});
+
+    // State dla hasła do dołączenia do lobby
+    const [joinPassword, setJoinPassword] = useState('');
 
     const { setCurrentLobby } = useContext(LobbyContext);
     const navigate = useNavigate();
@@ -67,7 +70,6 @@ function YourLobbiesPage() {
                 throw new Error('Failed to join lobby');
             }
 
-            // Znajdź lobby w liście
             const lobby = lobbies.find(l => l.id === lobbyId);
             if (lobby) {
                 setCurrentLobby(lobby);
@@ -80,10 +82,42 @@ function YourLobbiesPage() {
         }
     };
 
+    const handleJoinLobbyWithPassword = async () => {
+        const lobbyId = lobbies.length > 0 ? lobbies[0].id : null;
+        if (!lobbyId) {
+            setErrors('No lobby to join');
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://localhost:8080/api/lobby/join', {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ lobbyId, password: joinPassword }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to join lobby with password');
+            }
+
+            const lobby = lobbies.find(l => l.id === lobbyId);
+            if (lobby) {
+                setCurrentLobby(lobby);
+                navigate('/game');
+            } else {
+                setErrors('Lobby not found');
+            }
+        } catch (error) {
+            setErrors('Failed to join lobby with password');
+        }
+    };
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
-        // Walidacja danych formularza
         const errors = {};
 
         if (!formData.name || formData.name.trim().length < 1 || formData.name.length > 100) {
@@ -124,7 +158,6 @@ function YourLobbiesPage() {
                     throw new Error('Failed to create lobby');
                 }
 
-                // Zamknięcie modal i odświeżenie listy lobby
                 setShowModal(false);
                 setFormData({
                     name: '', description: '', isPublic: true, password: '',
@@ -149,6 +182,18 @@ function YourLobbiesPage() {
                         Add Lobby
                     </button>
                 </div>
+                <div className="join-lobby-with-password">
+                    <input
+                        type="password"
+                        placeholder="Enter password"
+                        value={joinPassword}
+                        onChange={(e) => setJoinPassword(e.target.value)}
+                    />
+                    {joinPassword && (
+                        <button onClick={handleJoinLobbyWithPassword}>Join Lobby</button>
+                    )}
+                </div>
+
                 {errors && <p className="error">{errors}</p>}
                 {lobbies.length > 0 ? (
                     <ul className="lobby-list">

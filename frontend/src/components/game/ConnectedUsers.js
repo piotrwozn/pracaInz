@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import Draggable from 'react-draggable';
 
 function ConnectedUsers({ sessionId }) {
@@ -25,17 +25,6 @@ function ConnectedUsers({ sessionId }) {
             })
             .catch(error => console.error('Error fetching connected users:', error));
     }, [sessionId]);
-
-    useEffect(() => {
-        fetchConnectedUsers();
-
-        // Opcjonalnie: ustawienie interwału do automatycznego odświeżania
-        const intervalId = setInterval(fetchConnectedUsers, 5000); // odśwież co 5 sekund
-
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, [fetchConnectedUsers]);
 
     return (
         <Draggable
