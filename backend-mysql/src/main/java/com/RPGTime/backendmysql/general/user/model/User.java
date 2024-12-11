@@ -50,6 +50,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserLobby> userLobby = new HashSet<>();
 
+
     public User(String username, String password, String email, Role role) {
         this.username = username;
         this.password = password;

@@ -2,6 +2,7 @@ package com.RPGTime.backendmysql.forum.topic;
 
 import com.RPGTime.backendmysql.forum.category.Category;
 import com.RPGTime.backendmysql.forum.post.Post;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
@@ -32,14 +33,15 @@ public class Topic {
     @Column(name = "ID", updatable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "CATEGORY_ID", nullable = false)
-    private Category category;
-
     @Column(name = "TITLE", nullable = false)
     @NotNull
     @Size(min = 1, max = 200)
     private String title;
+
+    @Column(name = "CONTENTS", nullable = false)
+    @NotNull
+    @Size(min = 1, max = 500)
+    private String contents;
 
     @Column(name = "CREATED_AT", nullable = false)
     private LocalDateTime createdAt;
@@ -48,12 +50,18 @@ public class Topic {
     @JoinColumn(name = "AUTHOR_ID", nullable = false)
     private User author;
 
-    @OneToMany(
-            mappedBy = "topic",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Rodzic w relacji Topic-Post
     private Set<Post> posts = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "TOPIC_CATEGORY",
+            joinColumns = @JoinColumn(name = "TOPIC_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID")
+    )
+    @JsonManagedReference("topic-categories") // Zarządzana strona relacji z Category
+    private Set<Category> categories = new HashSet<>();
 
     @PrePersist
     protected void onCreate() {

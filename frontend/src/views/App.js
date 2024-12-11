@@ -13,6 +13,8 @@ import YourLobbiesPage from './lobby/YourLobbiesPage';
 import { LobbyProvider } from '../contexts/LobbyContext';
 import Game from '../components/game/Game';
 import PrivateRoute from '../components/PrivateRoute';
+import Forum from './forum/Forum';
+import TopicDetail from './forum/TopicDetail';
 
 function App() {
     return (
@@ -35,6 +37,8 @@ function App() {
                             </PrivateRoute>
                         }
                     />
+                    <Route path="/forum" element={<Forum/>}/>
+                    <Route path="/forum/topic" element={<TopicDetail />} />
                 </Routes>
             </Router>
         </LobbyProvider>

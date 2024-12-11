@@ -8,6 +8,8 @@ import com.RPGTime.backendmysql.general.user.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserLobbyService {
@@ -60,4 +62,14 @@ public class UserLobbyService {
             return false;
         }
     }
+
+    public boolean removeUserFromLobby(Lobby lobby, User user) {
+        Optional<UserLobby> userLobby = userLobbyRepository.findByUserAndLobby(user, lobby);
+        if (userLobby.isPresent()) {
+            userLobbyRepository.delete(userLobby.get());
+            return true;
+        }
+        return false;
+    }
+
 }

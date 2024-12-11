@@ -56,3 +56,16 @@
 .dice-configuration button {
     margin-left: 10px;
 }
+
+.leave-game-button {
+    background-color: #c62828;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.leave-game-button:hover {
+    background-color: #b71c1c;
+}

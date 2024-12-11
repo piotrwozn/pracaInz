@@ -75,4 +75,23 @@ public class LobbyService {
         }
         return HttpStatus.valueOf(403);
     }
+
+    public HttpStatusCode leaveLobby(Long lobbyId) {
+        User user = userService.getUserProfile();
+
+        Optional<Lobby> optionalLobby = lobbyRepository.findById(lobbyId);
+        if (optionalLobby.isPresent()) {
+            Lobby lobby = optionalLobby.get();
+            boolean result = userLobbyService.removeUserFromLobby(lobby, user);
+            if (result) {
+                return HttpStatus.OK;
+            } else {
+                return HttpStatus.NOT_FOUND;
+            }
+        } else {
+            return HttpStatus.NOT_FOUND;
+        }
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package com.RPGTime.backendmysql.forum.category;
 
 import com.RPGTime.backendmysql.forum.topic.Topic;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
@@ -38,10 +40,8 @@ public class Category {
     @Size(max = 500)
     private String description;
 
-    @OneToMany(
-            mappedBy = "category",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    // Zamiast OneToMany:
+    @ManyToMany(mappedBy = "categories")
+    @JsonBackReference("topic-categories") // Dziecko w relacji z Topic
     private Set<Topic> topics = new HashSet<>();
 }

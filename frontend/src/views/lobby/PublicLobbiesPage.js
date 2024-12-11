@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import Navbar from '../main/Navbar';
+import Navbar from '../../components/Navbar';
 import '../../styles/main/PublicLobbies.css';
 import addLobbyPopUpImage from '../../assets/images/addLobbiePopUp.png';
 import { LobbyContext } from '../../contexts/LobbyContext';

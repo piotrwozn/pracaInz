@@ -1,6 +1,6 @@
 // src/components/lobby/YourLobbiesPage.js
 import React, { useEffect, useState, useContext } from 'react';
-import Navbar from '../main/Navbar';
+import Navbar from '../../components/Navbar';
 import '../../styles/main/YourLobbies.css';
 import addLobbyPopUpImage from '../../assets/images/addLobbiePopUp.png';
 import { useNavigate } from 'react-router-dom';

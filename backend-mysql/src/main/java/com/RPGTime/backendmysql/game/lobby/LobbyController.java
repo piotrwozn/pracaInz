@@ -1,8 +1,7 @@
 package com.RPGTime.backendmysql.game.lobby;
 
 import com.RPGTime.backendmysql.game.lobby.model.Lobby;
-import com.RPGTime.backendmysql.game.lobby.model.dto.JoinLobbyRequest;
-import com.RPGTime.backendmysql.game.lobby.model.dto.LobbyDTO;
+import com.RPGTime.backendmysql.game.lobby.model.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,4 +35,10 @@ public class LobbyController {
     public ResponseEntity<String> createLobby(@RequestBody LobbyDTO lobbyDTO) {
         return new ResponseEntity<>(lobbyService.createLobby(lobbyDTO), HttpStatus.OK);
     }
+
+    @PostMapping("/leave")
+    public ResponseEntity<?> leaveLobby(@RequestBody LeaveLobbyRequest request) {
+        return new ResponseEntity<>(lobbyService.leaveLobby(request.getLobbyId()));
+    }
+
 }

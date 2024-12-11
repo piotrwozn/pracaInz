@@ -1,6 +1,8 @@
 package com.RPGTime.backendmysql.forum.post;
 
 import com.RPGTime.backendmysql.forum.topic.Topic;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
@@ -31,6 +33,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "TOPIC_ID", nullable = false)
+    @JsonBackReference // Dziecko w relacji Topic-Post
     private Topic topic;
 
     @ManyToOne

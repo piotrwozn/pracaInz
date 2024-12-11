@@ -80,7 +80,7 @@ button:hover {
 
 @font-face {
     font-family: 'BlackcastleFont';
-    src: url('../../assets/font/Blackcastlemf-BG5n.ttf') format('truetype');
+    src: url('../../assets/font/font.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
