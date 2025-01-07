@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import SockJS from 'sockjs-client';
-import { over } from 'stompjs';
-import Draggable from 'react-draggable';
+// src/components/game/GameChat.js
 
-function GameChat({ sessionId }) {
+import React, {useEffect, useRef, useState} from 'react';
+import SockJS from 'sockjs-client';
+import {over} from 'stompjs';
+import Draggable from "react-draggable";
+
+function GameChat({sessionId}) {
     const [messages, setMessages] = useState([]);
     const messagesRef = useRef([]);
     const [newMessage, setNewMessage] = useState('');
@@ -13,61 +15,50 @@ function GameChat({ sessionId }) {
     useEffect(() => {
         console.log('GameChat useEffect called');
 
-        // Unikamy ponownej inicjalizacji połączenia
         if (isConnectedRef.current) {
             console.log('Already connected or connecting, skipping connection.');
             return;
         }
 
-        const token = localStorage.getItem('token'); // Pobierz token autoryzacji z localStorage
+        const token = localStorage.getItem('token');
 
         if (token && sessionId) {
-            isConnectedRef.current = true; // Flaga zapobiegająca wielokrotnym połączeniom
+            isConnectedRef.current = true; // Set flag immediately
 
             const socket = new SockJS(`http://localhost:8080/ws?access_token=${token}&sessionId=${sessionId}`);
             const client = over(socket);
 
-            client.connect(
-                {},
-                (frame) => {
-                    console.log('Connected: ' + frame);
-                    stompClientRef.current = client;
+            client.connect({}, (frame) => {
+                console.log('Connected: ' + frame);
+                stompClientRef.current = client;
 
-                    // Subskrypcja wiadomości dla bieżącej sesji
-                    client.subscribe(`/topic/messages/${sessionId}`, (message) => {
-                        if (message.body) {
-                            const messageObj = JSON.parse(message.body);
-                            setMessages((prevMessages) => {
-                                const updatedMessages = [...prevMessages, messageObj];
-                                messagesRef.current = updatedMessages;
-                                return updatedMessages;
-                            });
-                        }
-                    });
-
-                    // Subskrypcja listy użytkowników sesji
-                    client.subscribe(`/topic/session-users/${sessionId}`, (userList) => {
-                        console.log('Session users updated:', userList.body);
-                    });
-                },
-                (error) => {
-                    console.error('STOMP error', error);
-                    isConnectedRef.current = false; // Resetuj flagę w przypadku błędu
-                }
-            );
+                // Subscribe to the topic for this session
+                client.subscribe(`/topic/messages/${sessionId}`, (message) => {
+                    if (message.body) {
+                        const messageObj = JSON.parse(message.body);
+                        setMessages((prevMessages) => {
+                            const updatedMessages = [...prevMessages, messageObj];
+                            messagesRef.current = updatedMessages;
+                            return updatedMessages;
+                        });
+                    }
+                });
+            }, (error) => {
+                console.error('STOMP error', error);
+                isConnectedRef.current = false; // Reset on error
+            });
         }
 
         return () => {
             console.log('GameChat cleanup function called');
-            if (stompClientRef.current) {
+            if (stompClientRef.current !== null) {
                 stompClientRef.current.disconnect(() => {
-                    console.log('Disconnected from WebSocket');
+                    console.log('Disconnected');
                 });
-                stompClientRef.current = null; // Ustaw referencję na null
-                isConnectedRef.current = false; // Resetuj flagę po rozłączeniu
+                isConnectedRef.current = false;
             }
         };
-    }, [sessionId]); // sessionId w tablicy zależności, by ponownie inicjalizować po zmianie
+    }, [sessionId]); // Add sessionId to dependency array
 
     const sendMessage = () => {
         if (stompClientRef.current && newMessage.trim() !== '') {
@@ -75,19 +66,16 @@ function GameChat({ sessionId }) {
                 content: newMessage,
             };
             stompClientRef.current.send(`/app/chat/${sessionId}`, {}, JSON.stringify(message));
-            setNewMessage(''); // Reset pola wiadomości
+            setNewMessage('');
         }
     };
 
-    return (
-        <Draggable>
+    return (<Draggable>
             <div className="game-chat">
                 <div className="messages">
-                    {messages.map((msg, index) => (
-                        <div key={index}>
+                    {messages.map((msg, index) => (<div key={index}>
                             <b>{msg.sender}:</b> {msg.content}
-                        </div>
-                    ))}
+                        </div>))}
                 </div>
                 <div className="input">
                     <input
@@ -99,8 +87,7 @@ function GameChat({ sessionId }) {
                     <button onClick={sendMessage}>Send</button>
                 </div>
             </div>
-        </Draggable>
-    );
+        </Draggable>);
 }
 
 export default GameChat;
